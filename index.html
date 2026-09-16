@@ -194,6 +194,41 @@
 
   .marquee-track{ animation:scroll-x 28s linear infinite; }
   @keyframes scroll-x{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  .scroll-hint{ display:none; }
+
+  /* horizontal card rails on small screens */
+  @media (max-width: 767px){
+    .card-rail{
+      display:flex !important;
+      overflow-x:auto;
+      gap:1rem;
+      padding-bottom:.5rem;
+      scroll-snap-type:x mandatory;
+      scrollbar-width:thin;
+      -webkit-overflow-scrolling:touch;
+    }
+    .card-rail > *{
+      flex:0 0 min(84vw, 20rem);
+      scroll-snap-align:start;
+    }
+    .scroll-hint{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:.4rem;
+      color:var(--mute);
+      font-size:.7rem;
+      margin:-1.75rem 0 1rem;
+    }
+    .scroll-hint i{
+      color:var(--blue-300);
+      animation:hint-nudge 1.6s ease-in-out infinite;
+    }
+    @keyframes hint-nudge{
+      0%,100%{ transform:translateX(0); }
+      50%{ transform:translateX(4px); }
+    }
+  }
 </style>
 </head>
 
@@ -398,7 +433,8 @@
       <p class="text-mute mt-4 leading-relaxed">From a single landing page to a full custom application — pick what you need, or ask and I'll help you figure it out.</p>
     </div>
 
-    <div id="servicesGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+    <p class="scroll-hint" aria-hidden="true">Swipe or drag to explore <i class="fa-solid fa-arrow-right"></i></p>
+    <div id="servicesGrid" class="card-rail grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
   </div>
 </section>
 
@@ -426,7 +462,8 @@
       <div id="filterBar" class="flex flex-wrap gap-2"></div>
     </div>
 
-    <div id="projectsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <p class="scroll-hint" aria-hidden="true">Swipe or drag to explore <i class="fa-solid fa-arrow-right"></i></p>
+    <div id="projectsGrid" class="card-rail grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </div>
 </section>
 
@@ -438,7 +475,8 @@
       <p class="text-blue-400 font-display font-medium mb-3">Why Choose Me / ለምን እኔን መረጡ?</p>
       <h2 class="font-display font-semibold text-3xl sm:text-4xl leading-tight">Working with me, in short</h2>
     </div>
-    <div id="whyGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+    <p class="scroll-hint" aria-hidden="true">Swipe or drag to explore <i class="fa-solid fa-arrow-right"></i></p>
+    <div id="whyGrid" class="card-rail grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
   </div>
 </section>
 
@@ -449,7 +487,8 @@
       <p class="text-blue-400 font-display font-medium mb-3">Testimonials / ምስክርነቶች</p>
       <h2 class="font-display font-semibold text-3xl sm:text-4xl leading-tight">What clients say<br><span class="text-xl font-normal text-mute">ደንበኞቻችን የሚሉት</span></h2>
     </div>
-    <div id="testimonialsGrid" class="grid md:grid-cols-3 gap-6"></div>
+    <p class="scroll-hint" aria-hidden="true">Swipe or drag to explore <i class="fa-solid fa-arrow-right"></i></p>
+    <div id="testimonialsGrid" class="card-rail grid md:grid-cols-3 gap-6"></div>
   </div>
 </section>
 
